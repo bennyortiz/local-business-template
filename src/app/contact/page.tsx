@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import businessConfig from '@/config/business-config'; // Import config for contact details
+import SectionContainer from '@/components/layout/SectionContainer'; // Import
 
 export const metadata: Metadata = {
   title: 'Contact Us | Your Local Business', // TODO: Make dynamic
@@ -19,14 +20,15 @@ export const metadata: Metadata = {
  */
 const PageHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
-    <div className="container px-4 md:px-6 text-center">
+    {/* Use SectionContainer and pass text-center */}
+    <SectionContainer className="text-center">
       <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-foreground mb-4">
         {title}
       </h1>
       <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
         {subtitle}
       </p>
-    </div>
+    </SectionContainer>
   </section>
 );
 
@@ -112,7 +114,8 @@ export default function ContactPage() {
       <PageHeader title="Contact Us" subtitle="We'd love to hear from you!" />
 
       <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12">
+        {/* Use SectionContainer and pass grid layout classes */}
+        <SectionContainer className="grid md:grid-cols-2 gap-12">
           <div>
             <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
             <ContactForm />
@@ -121,7 +124,7 @@ export default function ContactPage() {
             <ContactDetails />
             <MapPlaceholder />
           </div>
-        </div>
+        </SectionContainer>
       </section>
     </main>
   );

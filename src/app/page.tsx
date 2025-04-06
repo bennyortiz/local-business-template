@@ -1,4 +1,7 @@
 import { Button } from '@/components/ui/button';
+import SectionContainer from '@/components/layout/SectionContainer';
+import TestimonialsSection from '@/components/sections/TestimonialsSection'; // Import TestimonialsSection
+import { Testimonial } from '@/components/ui/TestimonialCard'; // Import Testimonial type
 
 // TODO: Placeholder components - These will be moved to /components/ui/sections later
 
@@ -8,7 +11,8 @@ import { Button } from '@/components/ui/button';
  */
 const HeroSection = () => (
   <section className="w-full py-20 md:py-32 lg:py-40 xl:py-48 bg-muted/40">
-    <div className="container mx-auto px-6 md:px-8 text-center">
+    {/* Use SectionContainer and pass text-center */}
+    <SectionContainer className="text-center">
       <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none text-foreground mb-6">
         Welcome to Your Local Business
       </h1>
@@ -16,7 +20,7 @@ const HeroSection = () => (
         Providing top-notch [Your Service Category] services in [Your Area].
       </p>
       <Button size="lg">Get a Free Quote</Button>
-    </div>
+    </SectionContainer>
   </section>
 );
 
@@ -26,7 +30,8 @@ const HeroSection = () => (
  */
 const ServiceOverviewSection = () => (
   <section className="w-full py-16 md:py-24 lg:py-32">
-    <div className="container mx-auto px-6 md:px-8">
+    {/* Use SectionContainer */}
+    <SectionContainer>
       <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl mb-16">
         Our Services
       </h2>
@@ -48,7 +53,7 @@ const ServiceOverviewSection = () => (
       <div className="text-center mt-16">
         <Button variant="outline" size="lg">View All Services</Button>
       </div>
-    </div>
+    </SectionContainer>
   </section>
 );
 
@@ -58,7 +63,8 @@ const ServiceOverviewSection = () => (
  */
 const CTASection = () => (
   <section className="w-full py-16 md:py-24 lg:py-32 bg-primary text-primary-foreground">
-    <div className="container mx-auto px-6 md:px-8 text-center">
+    {/* Use SectionContainer and pass text-center */}
+    <SectionContainer className="text-center">
       <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
         Ready to Get Started?
       </h2>
@@ -67,23 +73,64 @@ const CTASection = () => (
       </p>
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
         <Button size="lg" variant="secondary">Contact Us</Button>
-        <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">Learn More</Button>
+        {/* Use the new outline-primary variant for proper contrast on primary background */}
+        <Button size="lg" variant="outline-primary">Learn More</Button>
       </div>
-    </div>
+    </SectionContainer>
   </section>
 );
 
+// Sample Testimonial Data
+const sampleTestimonials: Testimonial[] = [
+  {
+    text: "Absolutely fantastic service! They were professional, efficient, and the results exceeded my expectations. Highly recommend!",
+    authorName: "Jane Doe",
+    authorTitle: "Homeowner, Anytown",
+    rating: 5,
+  },
+  {
+    text: "We've relied on their expertise for years. Consistent quality and great communication make them our go-to provider.",
+    authorName: "John Smith",
+    authorTitle: "Business Owner, Sometown",
+    rating: 5,
+  },
+  {
+    text: "A very positive experience overall. They addressed all our concerns promptly and delivered exactly what we needed.",
+    authorName: "Alex Johnson",
+    authorTitle: "Property Manager",
+    rating: 4,
+  },
+  {
+    text: "The team was incredibly helpful and knowledgeable. They guided us through the whole process smoothly.",
+    authorName: "Sarah Chen",
+    authorTitle: "New Customer",
+    rating: 5,
+  },
+  {
+    text: "Reliable and trustworthy. We appreciate their consistent attention to detail.",
+    authorName: "Michael Brown",
+    authorTitle: "Long-time Client",
+    rating: 4,
+  },
+];
+
 /**
  * The main homepage component.
- * Aggregates the Hero, Service Overview, and CTA sections.
+ * Aggregates the Hero, Service Overview, Testimonials, and CTA sections.
  */
 export default function Home() {
   return (
-    // Removed min-h-screen as layout handles it
     <main className="flex flex-col">
-      {/* Header and Footer are now in layout.tsx */}
       <HeroSection />
       <ServiceOverviewSection />
+      {/* Add Testimonials Section */}
+      <TestimonialsSection
+        id="testimonials" // Optional ID for navigation
+        title="What Our Clients Say"
+        description="Hear directly from satisfied customers about their experience."
+        testimonials={sampleTestimonials}
+        // Optional: Add className for background, e.g., className="bg-muted/40"
+      />
       <CTASection />
     </main>
   );

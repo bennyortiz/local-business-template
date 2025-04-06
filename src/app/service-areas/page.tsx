@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import serviceConfig from '@/config/service-config';
+import SectionContainer from '@/components/layout/SectionContainer'; // Import
 
 export const metadata: Metadata = {
   title: 'Service Areas | Your Local Business', // TODO: Make dynamic
@@ -25,14 +26,15 @@ export const metadata: Metadata = {
  */
 const PageHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
-    <div className="container px-4 md:px-6 text-center">
+    {/* Use SectionContainer and pass text-center */}
+    <SectionContainer className="text-center">
       <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-foreground mb-4">
         {title}
       </h1>
       <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
         {subtitle}
       </p>
-    </div>
+    </SectionContainer>
   </section>
 );
 
@@ -48,7 +50,8 @@ export default function ServiceAreasPage() {
       <PageHeader title="Our Service Areas" subtitle="Proudly Serving These Communities" />
 
       <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container mx-auto px-4 md:px-6">
+        {/* Use SectionContainer */}
+        <SectionContainer>
           {areas.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {areas.map((area) => (
@@ -84,7 +87,7 @@ export default function ServiceAreasPage() {
               Service area information is currently unavailable.
             </p>
           )}
-        </div>
+        </SectionContainer>
       </section>
     </main>
   );

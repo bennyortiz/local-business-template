@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import serviceConfig from '@/config/service-config';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import SectionContainer from '@/components/layout/SectionContainer'; // Import
 
 interface ServiceDetailPageProps {
   params: { slug: string };
@@ -66,18 +67,20 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   return (
     <main className="flex flex-col min-h-screen">
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
-        <div className="container mx-auto px-4 md:px-6 text-center">
+        {/* Use SectionContainer for header */}
+        <SectionContainer className="text-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-foreground mb-4">
             {service.name}
           </h1>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
             {service.shortDescription}
           </p>
-        </div>
+        </SectionContainer>
       </section>
 
       <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container mx-auto px-4 md:px-6 grid lg:grid-cols-3 gap-12">
+        {/* Use SectionContainer for main content, passing grid classes */}
+        <SectionContainer className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 prose prose-lg dark:prose-invert max-w-none">
             <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
                <Image
@@ -127,10 +130,10 @@ export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
                 <p className="mb-4">Contact us today to discuss how our {service.name} service can help you.</p>
                 <Link href="/contact" passHref>
                    <Button variant="secondary" className="w-full">Contact Us</Button>
-                </Link>
+                 </Link>
              </div>
           </aside>
-        </div>
+        </SectionContainer>
       </section>
     </main>
   );

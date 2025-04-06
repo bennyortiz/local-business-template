@@ -13,11 +13,14 @@ const config: Config = {
     container: {
       center: true,
       padding: '1rem', // Reduced padding for potentially better visual balance
-      screens: {
-        '2xl': '1400px',
-      },
+      // screens definition moved to theme.extend
     },
     extend: {
+      // Add screens definition here
+      screens: {
+        'md': '768px', // Ensure md breakpoint is defined (Tailwind default)
+        '2xl': '1400px', // Keep the custom 2xl breakpoint
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -73,10 +76,58 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        "slide-in-from-top": {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "slide-out-to-top": {
+          "0%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(-100%)", opacity: "0" },
+        },
+        "slide-in-from-right": {
+          "0%": { transform: "translateX(100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        "slide-out-to-right": {
+          "0%": { transform: "translateX(0)", opacity: "1" },
+          "100%": { transform: "translateX(100%)", opacity: "0" },
+        },
+        "slide-in-from-left": {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        "slide-out-to-left": {
+          "0%": { transform: "translateX(0)", opacity: "1" },
+          "100%": { transform: "translateX(-100%)", opacity: "0" },
+        },
+        "slide-in-from-bottom": {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "slide-out-to-bottom": {
+          "0%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(100%)", opacity: "0" },
+        },
+        // Add marquee animation
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        // Add sheet animations matching sheet.tsx durations
+        "slide-in-from-top": "slide-in-from-top 0.5s ease-in-out",
+        "slide-out-to-top": "slide-out-to-top 0.3s ease-in-out",
+        "slide-in-from-right": "slide-in-from-right 0.5s ease-in-out",
+        "slide-out-to-right": "slide-out-to-right 0.3s ease-in-out",
+        "slide-in-from-left": "slide-in-from-left 0.5s ease-in-out",
+        "slide-out-to-left": "slide-out-to-left 0.3s ease-in-out",
+        "slide-in-from-bottom": "slide-in-from-bottom 0.5s ease-in-out",
+        "slide-out-to-bottom": "slide-out-to-bottom 0.3s ease-in-out",
+        // Add marquee animation (adjust duration as needed)
+        marquee: 'marquee 40s linear infinite',
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)'], // Map the font variable from layout.tsx
